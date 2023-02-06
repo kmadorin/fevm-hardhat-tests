@@ -30,13 +30,13 @@ task("get-owner", "Gets an owner address of a miner actor.")
   // full address for t02488 miner
   // https://hyperspace.filfox.info/en/address/t02488
   // const minerAddress = 't02488';
-  const minerAddress = 't02488';
+  const minerAddress = 't2vb6iahjntzweoxb7ozhond4jalwf5azy2xzk2oa';
   const minerId = fa.newFromString(minerAddress);
   const minerAddressBytes = parseAddress(minerAddress);
   const minerAddressBytesHex = '0x' + minerAddressBytes.toString('hex');
 
   const SimpleCoinFactory = await ethers.getContractFactory("SimpleCoin");
-  const SimpleCoinAddress = '0x58D18A9Df47Be7ccbA305Ae43492817f40Ab882b';
+  const SimpleCoinAddress = '0x8f116424a29eDA37BEA1Adc9D6496C4BF1cb3816';
   const simpleCoin = SimpleCoinFactory.attach(SimpleCoinAddress);  
   const priorityFee = await callRpc("eth_maxPriorityFeePerGas");
 
@@ -44,19 +44,19 @@ task("get-owner", "Gets an owner address of a miner actor.")
   // const abiEncodedCall = simpleCoin.interface.functions.encode.getOwner(new Uint8Array(minerAddressBytes));
   console.log('minerAddress: ', minerAddress)
   console.log('minerAddressBytes glif lib:', minerId.bytes);
-  console.log('minerAddressBytes zondax lib:', new Uint8Array(minerAddressBytes));
+  console.log('minerAddressBytes zondax lib:', minerAddressBytes.toString('hex'));
   console.log('isBytes: ', ethers.utils.isBytes(minerAddressBytes));
   console.log('getOwnerEncodedCall: ', simpleCoin.interface.encodeFunctionData("getOwner", [minerAddressBytes]));
   
-  let tx = await simpleCoin.getOwner('0x0509B8', {
+  let tx = await simpleCoin.getOwner(minerAddressBytes, {
       maxPriorityFeePerGas: priorityFee
   });
 
   let receipt = await tx.wait();
-  // let ownerAddress = await simpleCoin.owner();
+  let ownerAddress = await simpleCoin.owner();
 
   console.log(receipt);
-  // console.log(ownerAddress);
+  console.log('ownerAddress: ', ownerAddress);
 })
 
 
