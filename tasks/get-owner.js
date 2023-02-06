@@ -49,7 +49,6 @@ task("get-owner", "Gets an owner address of a miner actor.")
   console.log('getOwnerEncodedCall: ', simpleCoin.interface.encodeFunctionData("getOwner", [minerAddressBytes]));
   
   let tx = await simpleCoin.getOwner('0x0509B8', {
-      gasLimit: 1000000000,
       maxPriorityFeePerGas: priorityFee
   });
 
