@@ -1,4 +1,5 @@
 exports.getBalance = require("./simple-coin/get-balance")
+exports.getOwner = require("./get-owner")
 exports.getAddress = require("./get-address")
 exports.sendCoin = require("./simple-coin/send-coin")
 exports.storeAll = require("./filecoin-market-consumer/store-all")

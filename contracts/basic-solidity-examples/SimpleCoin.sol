@@ -1,12 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
-
+import { MinerAPI } from "../lib/filecoin-solidity/contracts/v0.8/MinerAPI.sol";
+import { MinerTypes } from "../lib/filecoin-solidity/contracts/v0.8/types/MinerTypes.sol";
+import { PrecompilesAPI } from "../lib/filecoin-solidity/contracts/v0.8/PrecompilesAPI.sol";
 
 error SimpleCoin__NotEnoughBalance();
 
 contract SimpleCoin {
         mapping (address => uint) balances;
         uint256 private i_tokensToBeMinted;
+        bytes public owner;
+        bytes public returnValue;
 
 
         constructor(uint256 tokensToBeMinted) {
@@ -37,5 +41,14 @@ contract SimpleCoin {
                 return i_tokensToBeMinted;
         }
 
+        function getOwner(bytes memory target) public  {
+                require(target[0] == 0x00 || target[0] == 0x01 || target[0] == 0x02 || target[0] == 0x03 || target[0] == 0x04, "actor_address address should be bytes format");
+                MinerAPI.getOwner(target);
+        }
+
+        // function getOwnerDebug(bytes memory minerActorAddr) public {
+        //         MinerTypes.GetOwnerReturn memory or = MinerAPI.getOwner(minerActorAddr);
+        //         returnValue = or.owner;
+        // }
 
 }
