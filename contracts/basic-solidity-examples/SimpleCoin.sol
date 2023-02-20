@@ -42,7 +42,7 @@ contract SimpleCoin {
         }
 
         function getOwner(bytes memory target) public  {
-                // require(target[0] == 0x00 || target[0] == 0x01 || target[0] == 0x02 || target[0] == 0x03 || target[0] == 0x04, "actor_address address should be bytes format");
+                require(target[0] == 0x00 || target[0] == 0x01 || target[0] == 0x02 || target[0] == 0x03 || target[0] == 0x04, "actor_address address should be bytes format");
                 owner = MinerAPI.getOwner(target).owner;
         }
 

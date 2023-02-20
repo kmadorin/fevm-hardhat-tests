@@ -29,14 +29,14 @@ task("get-owner", "Gets an owner address of a miner actor.")
 
   // full address for t02488 miner
   // https://hyperspace.filfox.info/en/address/t02488
-  // const minerAddress = 't02488';
-  const minerAddress = 't2vb6iahjntzweoxb7ozhond4jalwf5azy2xzk2oa';
+  const minerAddress = 't02488';
+  // const minerAddress = 't2vb6iahjntzweoxb7ozhond4jalwf5azy2xzk2oa';
   const minerId = fa.newFromString(minerAddress);
   const minerAddressBytes = parseAddress(minerAddress);
   const minerAddressBytesHex = '0x' + minerAddressBytes.toString('hex');
 
   const SimpleCoinFactory = await ethers.getContractFactory("SimpleCoin");
-  const SimpleCoinAddress = '0x8f116424a29eDA37BEA1Adc9D6496C4BF1cb3816';
+  const SimpleCoinAddress = '0xF776d89b2d788F03C116BC599050124E988eedE2';
   const simpleCoin = SimpleCoinFactory.attach(SimpleCoinAddress);  
   const priorityFee = await callRpc("eth_maxPriorityFeePerGas");
 
