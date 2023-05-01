@@ -48,12 +48,11 @@ module.exports = async ({ deployments }) => {
 
     console.log("Wallet Ethereum Address:", deployer.address)
     const chainId = network.config.chainId
-    const tokenToBeMinted = networkConfig[chainId]["tokenToBeMinted"]
 
 
-    await deployLogError("SimpleCoin", {
+    await deployLogError("MinerAPICallerMock", {
         from: deployer.address,
-        args: [tokenToBeMinted],
+        args: [],
         // maxPriorityFeePerGas to instruct hardhat to use EIP-1559 tx format
         maxPriorityFeePerGas: priorityFee,
         log: true,

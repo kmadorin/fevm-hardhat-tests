@@ -1,8 +1,10 @@
 exports.getBalance = require("./simple-coin/get-balance")
 exports.getOwner = require("./get-owner")
+exports.checkOwnership = require("./check-ownership")
 exports.getAddress = require("./get-address")
 exports.sendCoin = require("./simple-coin/send-coin")
 exports.storeAll = require("./filecoin-market-consumer/store-all")
 exports.addCID = require("./deal-rewarder/add-cid")
 exports.fund = require("./deal-rewarder/fund")
 exports.claimBounty = require("./deal-rewarder/claim-bounty")
+exports.getMsgSender = require("./get-msg-sender");
